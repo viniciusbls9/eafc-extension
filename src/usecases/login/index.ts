@@ -20,10 +20,10 @@ const login = async () => {
       return !button.disabled;
     });
 
-    await waitForMultipleActions(
+    await waitForMultipleActions([
       page.click(".btn-standard"),
-      page.waitForNavigation({ waitUntil: "networkidle2" })
-    );
+      page.waitForNavigation({ waitUntil: "networkidle2" }),
+    ]);
 
     const emailInput = "#email";
     const passwordInput = "#password";
@@ -34,24 +34,15 @@ const login = async () => {
     await page.type(emailInput, email as string);
     await page.type(passwordInput, password as string);
 
-    await Promise.all([
+    await waitForMultipleActions([
       page.click("#logInBtn"),
       page.waitForNavigation({ waitUntil: "networkidle2" }),
     ]);
 
-    await Promise.all([
+    await waitForMultipleActions([
       page.click("#btnSendCode"),
       page.waitForNavigation({ waitUntil: "networkidle2" }),
     ]);
-
-    // Função para capturar screenshot e fechar o navegador
-    const captureAndClose = async () => {
-      await page.screenshot({ path: "example.png" });
-      await browser.close();
-    };
-
-    // Chama a função para capturar screenshot e fechar o navegador após um intervalo
-    setTimeout(captureAndClose, 1000000);
   } catch (error) {
     console.error("Ocorreu um erro:", error);
   }

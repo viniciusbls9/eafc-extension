@@ -12,5 +12,6 @@
     "strict": true,
     "skipLibCheck": true,
   },
-  "includes": ["index.ts", "src/env.d.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

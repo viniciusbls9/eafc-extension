@@ -1,4 +1,4 @@
-import login from "./src/usecases/login/index";
+import login from "./usecases/login/index";
 import * as dotenv from "dotenv";
 
 dotenv.config();
